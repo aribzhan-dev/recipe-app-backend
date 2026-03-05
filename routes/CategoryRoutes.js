@@ -1,43 +1,54 @@
-const express = require('express');
-const Category = require('../models/Category');
-const authMiddleware = require('../middleware/authMiddleware');
+const express = require("express");
+const Category = require("../models/Category");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post('/categories', authMiddleware, async (req, res) => {
-    const category = new Category(req.body);
-    
+
+router.post("/", authMiddleware, async (req, res) => {
+    const category = new Category({
+        title: req.body.title,
+        userID: req.user.userId
+    });
+
     await category.save();
     res.json(category);
 });
 
-router.get('/categories', authMiddleware, async (req, res) => {
-    const categories = await Category.find();
+
+router.get("/", authMiddleware, async (req, res) => {
+    const categories = await Category.find({ userID: req.user.userId });
     res.json(categories);
 });
 
-router.put('/categories/:id', authMiddleware, async (req, res) => {
-    const category = await Category.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new : true }
+
+router.put("/:id", authMiddleware, async (req, res) => {
+    const category = await Category.findOneAndUpdate(
+        { _id: req.params.id, userID: req.user.userId },
+        { title: req.body.title },
+        { new: true }
     );
 
     if (!category) {
-        return res.status(404).json({ message : "Category not found" });
+        return res.status(404).json({ message: "Category not found" });
     }
 
     res.json(category);
 });
 
-router.delete('/categories/:id', authMiddleware, async (req, res) => {
-    const category = await Category.findByIdAndDelete(req.params.id);
+
+router.delete("/:id", authMiddleware, async (req, res) => {
+    const category = await Category.findOneAndDelete({
+        _id: req.params.id,
+        userID: req.user.userId
+    });
 
     if (!category) {
-        return res.status(404).json({ message : "Category not found" });
+        return res.status(404).json({ message: "Category not found" });
     }
 
-    res.json({ message : "Category deleted" }); 
+    res.json({ message: "Category deleted" });
 });
+
 
 module.exports = router;
