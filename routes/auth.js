@@ -12,7 +12,6 @@ router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Input validatsiya
     if (!name || name.trim() === "") {
       return res.status(400).json({ message: "Name is required" });
     }

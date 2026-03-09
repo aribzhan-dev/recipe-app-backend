@@ -52,7 +52,6 @@ router.put("/:id", authMiddleware, async (req, res) => {
             return res.status(400).json({ message: "Invalid recipe ID" });
         }
 
-        // Faqat ruxsat etilgan maydonlarni olish (Mass Assignment oldini olish)
         const { title, desc, ingredients, instructions, category } = req.body;
 
         if (category && !mongoose.Types.ObjectId.isValid(category)) {
