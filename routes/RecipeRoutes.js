@@ -6,7 +6,6 @@ const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
 
-// Create recipe
 router.post("/", authMiddleware, async (req, res) => {
     try {
         const { title, desc, ingredients, instructions, category } = req.body;
@@ -36,7 +35,6 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 
-// Get all recipes
 router.get("/", authMiddleware, async (req, res) => {
     try {
         const recipes = await Recipe.find({ userID: req.user.userId })
@@ -48,7 +46,6 @@ router.get("/", authMiddleware, async (req, res) => {
 });
 
 
-// Update recipe
 router.put("/:id", authMiddleware, async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -86,7 +83,6 @@ router.put("/:id", authMiddleware, async (req, res) => {
 });
 
 
-// Delete recipe
 router.delete("/:id", authMiddleware, async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {

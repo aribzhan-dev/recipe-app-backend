@@ -6,7 +6,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
 
-// Create category
+
 router.post("/", authMiddleware, async (req, res) => {
     try {
         const { title } = req.body;
@@ -28,7 +28,6 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 
-// Get all categories
 router.get("/", authMiddleware, async (req, res) => {
     try {
         const categories = await Category.find({ userID: req.user.userId });
@@ -39,7 +38,7 @@ router.get("/", authMiddleware, async (req, res) => {
 });
 
 
-// Update category
+
 router.put("/:id", authMiddleware, async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -69,7 +68,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
 });
 
 
-// Delete category
+
 router.delete("/:id", authMiddleware, async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
