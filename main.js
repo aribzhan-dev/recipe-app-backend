@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 
-const MONGO_URL = "mongodb+srv://recipe:02082008jon@cluster0.odag97a.mongodb.net/recipes?retryWrites=true&w=majority";
+const MONGO_URL = "mongodb+srv://recipe:02082008jon@cluster0.odag97a.mongodb.net/?appName=Cluster0";
 const PORT = 3000;
 const JWT_SECRET = "Aribzha123";
 
