@@ -2,11 +2,22 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { all } = require("./routes/auth");
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://recipe-app-frontend-teghil9vn-aribzhan-devs-projects.vercel.app"
+];
 
-app.use(cors());
+const corsOptions = {
+  origin: allowedOrigins,
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => {
