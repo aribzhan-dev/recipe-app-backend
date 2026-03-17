@@ -6,18 +6,18 @@ const { all } = require("./routes/auth");
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "recipe-app-frontend-gray-five.vercel.app"
-];
+// const allowedOrigins = [
+//   "http://localhost:3000",
+//   "http://localhost:5173",
+//   "recipe-app-frontend-gray-five.vercel.app"
+// ];
 
-const corsOptions = {
-  origin: allowedOrigins,
-  optionsSuccessStatus: 200
-}
+// const corsOptions = {
+//   origin: allowedOrigins,
+//   optionsSuccessStatus: 200
+// }
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
