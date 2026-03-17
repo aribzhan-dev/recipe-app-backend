@@ -6,11 +6,7 @@ const { all } = require("./routes/auth");
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "https://recipe-app-frontend-teghil9vn-aribzhan-devs-projects.vercel.app"
-];
+const allowedOrigins = ["*"];
 
 const corsOptions = {
   origin: allowedOrigins,
