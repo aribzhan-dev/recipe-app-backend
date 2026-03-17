@@ -9,9 +9,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
-  "https://recipe-app-frontend-teghil9vn-aribzhan-devs-projects.vercel.app",
-  "*",
-  "https://recipe-app-backend-g4d0.onrender.com"
+  "recipe-app-frontend-gray-five.vercel.app"
 ];
 
 const corsOptions = {
